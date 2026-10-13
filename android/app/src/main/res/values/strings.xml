@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MicrometricPro</string>
+    <string name="title_activity_main">MicrometricPro</string>
+    <string name="package_name">app.micrometricpro</string>
+    <string name="custom_url_scheme">app.micrometricpro</string>
+</resources>
