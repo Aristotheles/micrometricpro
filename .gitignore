@@ -1,0 +1,48 @@
+# Dependencies / build output
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.log
+
+# Secrets and signing material (never commit)
+.env
+.env.*
+*.jks
+*.keystore
+*.p12
+keystore.properties
+google-services.json
+GoogleService-Info.plist
+**/local.properties
+*.pem
+*.key
+
+# Android build output
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+*.apk
+*.aab
+*.hprof
+.cxx/
+
+# Local tooling / agent state (machine-specific)
+.serena/
+.agent/
+.idea/
+.vscode/
+*.iml
+
+# Handoff prompt for the initial build agent (contains local paths)
+docs/AGENT_KICKOFF_PROMPT.md
+
+# OS
+.DS_Store
+Thumbs.db

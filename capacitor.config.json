@@ -1,0 +1,8 @@
+{
+  "appId": "app.micrometricpro",
+  "appName": "MicrometricPro",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}
