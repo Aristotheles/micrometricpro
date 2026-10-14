@@ -15,6 +15,8 @@ import { createAiProvider } from '../../services/ai/provider.js';
 import { getAiErrorMessage } from '../../services/ai/errors.js';
 import { storeImage } from '../../storage/image-store.js';
 import { upsertSample } from '../../storage/repository.js';
+import { pickProfile } from '../../core/profile-io.js';
+import { getActiveMap, loadProfiles } from '../../storage/profile-store.js';
 import { createCanvasView } from './canvas-view.js';
 import {
   addManualMarker,
@@ -23,6 +25,7 @@ import {
   clearTool,
   computeResults,
   createWorkspace,
+  DEFAULT_OBJECTIVE,
   isAiStale,
   niceScaleBar,
   placePoint,
@@ -58,6 +61,7 @@ const COLORS = {
 };
 
 const session = {
+  profiles: [],
   loaded: null,
   workspace: null,
   tool: 'count',
@@ -112,6 +116,20 @@ export function mountAnalysis(root, env) {
           maximumFractionDigits: digits,
         }).format(value)
       : '—';
+
+  const profileFor = (objective) =>
+    pickProfile(session.profiles, objective, getActiveMap()[objective]);
+  loadProfiles()
+    .then((profiles) => {
+      session.profiles = profiles;
+      const workspace = session.workspace;
+      if (workspace && session.mounted) {
+        const objective = workspace.profile.objective;
+        setObjective(workspace, objective, profileFor(objective));
+        refresh();
+      }
+    })
+    .catch(() => {});
 
   const canvas = createCanvasView(canvasElement, {
     onViewChange(view) {
@@ -417,7 +435,11 @@ export function mountAnalysis(root, env) {
       if (session.loaded) URL.revokeObjectURL(session.loaded.url);
       session.aiAbort?.abort();
       session.loaded = loaded;
-      session.workspace = createWorkspace({ width: loaded.width, height: loaded.height });
+      session.workspace = createWorkspace({
+        width: loaded.width,
+        height: loaded.height,
+        profile: profileFor(DEFAULT_OBJECTIVE),
+      });
       session.view = null;
       session.sampleName = '';
       session.consentPrompt = false;
@@ -589,7 +611,7 @@ export function mountAnalysis(root, env) {
       loadFile(target.files?.[0]);
       target.value = '';
     } else if (target.matches('input[name="analysis-objective"]') && session.workspace) {
-      setObjective(session.workspace, Number(target.value));
+      setObjective(session.workspace, Number(target.value), profileFor(Number(target.value)));
       refresh();
     }
   }

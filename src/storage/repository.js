@@ -1,11 +1,11 @@
-/**
- * Versioned JSON repository abstraction for saved samples (spec §28, §35).
+﻿/**
+ * Versioned JSON repository abstraction for saved samples (spec Â§28, Â§35).
  * A single file (SAMPLES_FILE) holds `{ schemaVersion, samples: [...] }`.
  * Writes go through a temporary file that is renamed into place only after
  * a full write succeeds, so a crash or full disk mid-write cannot corrupt
  * or truncate the last good copy. Storage layer is Filesystem-backed on
  * native and IndexedDB-backed (via the plugin's own web fallback) in the
- * browser dev/test build — UI code only ever calls this module.
+ * browser dev/test build â€” UI code only ever calls this module.
  */
 
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
@@ -30,7 +30,7 @@ async function readRaw(path) {
     });
     return data;
   } catch (error) {
-    if (error?.code === 'OS-PLUG-FILE-0008' || error?.message === 'File does not exist.') {
+    if (error?.code === 'OS-PLUG-FILE-0008' || /does not exist/i.test(error?.message ?? '')) {
       return null;
     }
     throw error;
@@ -59,7 +59,7 @@ async function ensureDirectory() {
   try {
     await Filesystem.stat({ path: 'micrometricpro', directory: DIRECTORY });
   } catch (error) {
-    if (error?.code !== 'OS-PLUG-FILE-0008' && error?.message !== 'File does not exist.') {
+    if (error?.code !== 'OS-PLUG-FILE-0008' && !/does not exist/i.test(error?.message ?? '')) {
       throw error;
     }
     await Filesystem.mkdir({

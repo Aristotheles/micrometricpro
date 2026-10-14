@@ -38,13 +38,13 @@ export function isCalibratedProfile(profile) {
   );
 }
 
-export function createWorkspace({ width, height }) {
+export function createWorkspace({ width, height, profile = null }) {
   if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
     throw new Error('INVALID_IMAGE_SIZE');
   }
   return {
     imageSize: { width, height },
-    profile: exampleProfileFor(DEFAULT_OBJECTIVE),
+    profile: profile ?? exampleProfileFor(DEFAULT_OBJECTIVE),
     lengthPoints: [],
     circlePoints: [],
     roi: null,
@@ -53,8 +53,8 @@ export function createWorkspace({ width, height }) {
   };
 }
 
-export function setObjective(workspace, objective) {
-  workspace.profile = exampleProfileFor(objective);
+export function setObjective(workspace, objective, userProfile = null) {
+  workspace.profile = userProfile ?? exampleProfileFor(objective);
 }
 
 export function placePoint(workspace, tool, rawPoint) {

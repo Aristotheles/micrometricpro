@@ -1533,6 +1533,73 @@ button:disabled {
   margin-top: 14px;
 }
 
+.profile-row--user {
+  flex-wrap: wrap;
+}
+
+.control-row--view {
+  flex-wrap: wrap;
+}
+
+.profile-row__actions {
+  display: flex;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+}
+
+.record-list {
+  display: grid;
+  margin-top: 8px;
+}
+
+.record-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.record-row__select {
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
+}
+
+.record-row__main {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.record-row__main span {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.record-image {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: #05080a;
+}
+
 @media (max-width: 360px) {
   .app-shell {
     padding-right: 14px;

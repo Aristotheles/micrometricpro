@@ -4,7 +4,6 @@ import {
   button,
   card,
   chip,
-  emptyState,
   escapeHtml,
   field,
   icon,
@@ -30,6 +29,12 @@ import {
   revokeAiConsent,
   unmountAnalysis,
 } from '../features/analyze/analyze-screen.js';
+import {
+  calibrationScreen,
+  mountCalibration,
+  unmountCalibration,
+} from '../features/calibration/calibration-screen.js';
+import { mountRecords, recordsScreen, unmountRecords } from '../features/records/records-screen.js';
 
 const STORAGE_KEYS = {
   language: 'micrometricpro.language',
@@ -96,20 +101,6 @@ function onboardingMarkup(state, t) {
   return `<main class="onboarding"><div class="onboarding__top"><span class="brand-mark">${icon('microscope')}</span><span>MicrometricPro</span></div><div class="onboarding__body">${stepper({ current: state.onboardingStep, total: ONBOARDING_STEPS.length, labels: ONBOARDING_STEPS.map(t) })}<p class="eyebrow">${t(ONBOARDING_STEPS[state.onboardingStep])}</p><h1>${t(stepTitle[state.onboardingStep])}</h1><p class="onboarding__description">${t(stepDescription[state.onboardingStep])}</p>${content}</div><div class="onboarding__footer">${state.onboardingStep > 0 ? button(t('onboardingBack'), { variant: 'text', action: 'onboarding-back' }) : '<span></span>'}${button(t(state.onboardingStep === ONBOARDING_STEPS.length - 1 ? 'onboardingStart' : 'onboardingContinue'), { variant: 'primary', action: 'onboarding-next', iconName: state.onboardingStep === ONBOARDING_STEPS.length - 1 ? 'check' : 'arrow' })}</div></main>`;
 }
 
-function recordsScreen(t) {
-  const header = appBar({ eyebrow: t('eyebrowLibrary'), title: t('recordsTitle') });
-  return `${header}<div class="screen-content screen-content--empty"><p class="screen-intro">${t('recordsIntro')}</p>${card(emptyState({ iconName: 'records', title: t('recordsEmptyTitle'), description: t('recordsEmptyDescription') }), { className: 'empty-card' })}</div>`;
-}
-
-function calibrationScreen(t) {
-  const profile = (objective, translation) => {
-    const data = EXAMPLE_CALIBRATIONS[objective];
-    return `<article class="profile-row"><div class="profile-row__objective"><span class="objective-badge">${objective}×</span><div><strong>${t(translation)}</strong><span>${t('exampleOnly')}</span></div></div><div class="profile-row__scale"><strong>${data.scaleUmPerPx}</strong><span>${t('scaleUnit')}</span></div></article>`;
-  };
-  const header = appBar({ eyebrow: t('eyebrowCalibration'), title: t('calibrationTitle') });
-  return `${header}<div class="screen-content"><p class="screen-intro">${t('calibrationIntro')}</p>${card(`<div class="section-heading"><div><p class="eyebrow">${t('exampleOnly')}</p><h2>${t('exampleProfile')}</h2></div>${chip(t('uncalibratedBadge'), { tone: 'warning' })}</div><div class="profile-list">${profile(4, 'example4')}${profile(10, 'example10')}${profile(40, 'example40')}</div><div class="notice notice--warning">${icon('shield')}<p>${t('userProfileNeeded')}</p></div>${button(t('addProfile'), { variant: 'primary', action: 'stage-placeholder', iconName: 'plus', className: 'button--wide' })}`, { className: 'calibration-card' })}<p class="muted-note">${t('profileWizardNext')}</p></div>`;
-}
-
 function settingsScreen(state, t) {
   const header = appBar({ eyebrow: t('eyebrowSettings'), title: t('settingsTitle') });
   const appearance = card(
@@ -129,7 +120,7 @@ function settingsScreen(state, t) {
     `<div class="settings-section__heading">${icon('sparkles')}<h2>${t('aiSection')}</h2></div><p class="settings-copy">${t('aiOptionalNote')}</p><form data-form="api-key"><div class="key-field-row">${field({ id: 'gemini-api-key', label: t('apiKeyLabel'), type: 'password', placeholder: t('apiKeyPlaceholder'), autocomplete: 'off', hint: t('apiKeyHint') })}</div><div class="button-row">${button(t('saveKey'), { variant: 'primary', type: 'submit', iconName: 'shield' })}${button(t('testKey'), { variant: 'secondary', action: 'test-key', iconName: 'sparkles' })}</div></form><div class="key-status"><span class="key-status__indicator"></span><span data-key-status>${t('aiApiKeyMissing')}</span><button class="text-link text-link--danger" type="button" data-action="remove-key">${t('removeKey')}</button></div><label class="field"><span class="field__label">${t('modelLabel')}</span><input class="input" type="text" name="model" value="${escapeHtml(state.model)}" data-setting="model" autocapitalize="off" spellcheck="false"><span class="field__hint">${t('modelHint')}</span></label><label class="field"><span class="field__label">${t('promptLabel')}</span><textarea class="input textarea" name="prompt" rows="5" data-setting="prompt">${escapeHtml(state.prompt)}</textarea><span class="field__hint">${t('promptHint')}</span></label><button class="text-link" type="button" data-action="reset-prompt">${t('resetPrompt')}</button><button class="text-link" type="button" data-action="revoke-consent">${t('revokeConsent')}</button>`,
   );
   const privacy = card(
-    `<div class="settings-section__heading">${icon('shield')}<h2>${t('privacySection')}</h2></div><p class="settings-copy">${t('privacySummary')}</p><p class="settings-copy muted">${t('privacyDetails')}</p><button class="list-link" type="button" data-route="about"><span>${icon('globe')}${t('aboutLicenses')}</span>${icon('arrow')}</button><div class="data-management"><strong>${t('dataManagement')}</strong><p>${t('dataManagementNext')}</p></div>`,
+    `<div class="settings-section__heading">${icon('shield')}<h2>${t('privacySection')}</h2></div><p class="settings-copy">${t('privacySummary')}</p><p class="settings-copy muted">${t('privacyDetails')}</p><button class="list-link" type="button" data-route="about"><span>${icon('globe')}${t('aboutLicenses')}</span>${icon('arrow')}</button><div class="data-management"><strong>${t('dataManagement')}</strong><p>${t('dataManagementNote')}</p></div>`,
   );
   return `${header}<div class="screen-content screen-content--settings"><p class="screen-intro">${t('settingsIntro')}</p>${appearance}${ai}${privacy}</div>`;
 }
@@ -197,16 +188,18 @@ export function startApp(root) {
     const activeRoute = state.route === 'about' ? 'settings' : state.route;
     root.innerHTML = `${iconSpriteMarkup()}<div class="app-shell">${renderScreen(state, t)}${bottomNav(activeRoute, t)}</div><div class="toast-region" id="toast-region"></div>`;
     if (state.route === 'settings') refreshKeyStatus();
-    if (state.route === 'analyze') {
-      mountAnalysis(root, {
-        t,
-        showToast,
-        getLanguage: () => state.language,
-        getSettings: () => ({ model: state.model, prompt: state.prompt }),
-      });
-    } else {
-      unmountAnalysis();
-    }
+    const env = {
+      t,
+      showToast,
+      getLanguage: () => state.language,
+      getSettings: () => ({ model: state.model, prompt: state.prompt }),
+    };
+    unmountCalibration();
+    unmountRecords();
+    if (state.route === 'analyze') mountAnalysis(root, env);
+    else unmountAnalysis();
+    if (state.route === 'calibration') mountCalibration(root, env);
+    if (state.route === 'records') mountRecords(root, env);
   }
 
   function showToast(message, tone = 'info') {
@@ -298,9 +291,6 @@ export function startApp(root) {
       case 'onboarding-back':
         state.onboardingStep = Math.max(0, state.onboardingStep - 1);
         render();
-        break;
-      case 'stage-placeholder':
-        showToast(t('toastStagePlaceholder'));
         break;
       case 'test-key':
         await testKey();

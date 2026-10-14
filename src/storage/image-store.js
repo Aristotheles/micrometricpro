@@ -1,5 +1,5 @@
-/**
- * Private-storage copy of a selected photo (spec §27): the app must keep
+﻿/**
+ * Private-storage copy of a selected photo (spec Â§27): the app must keep
  * its own copy so a saved sample can be reopened after the app restarts,
  * independent of whatever OS-managed file the user originally picked.
  */
@@ -12,7 +12,7 @@ async function ensureDirectory() {
   try {
     await Filesystem.stat({ path: IMAGES_DIR, directory: Directory.Data });
   } catch (error) {
-    if (error?.code !== 'OS-PLUG-FILE-0008' && error?.message !== 'File does not exist.') {
+    if (error?.code !== 'OS-PLUG-FILE-0008' && !/does not exist/i.test(error?.message ?? '')) {
       throw error;
     }
     await Filesystem.mkdir({
@@ -67,7 +67,7 @@ export async function readImageBase64(path) {
 
 export async function deleteImage(path) {
   await Filesystem.deleteFile({ path, directory: Directory.Data }).catch((error) => {
-    if (error?.code !== 'OS-PLUG-FILE-0008' && error?.message !== 'File does not exist.') {
+    if (error?.code !== 'OS-PLUG-FILE-0008' && !/does not exist/i.test(error?.message ?? '')) {
       throw error;
     }
   });
