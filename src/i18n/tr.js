@@ -28,4 +28,15 @@ export default {
   circleReadout:
     'Çap: <b>{{diameter}} µm</b> · Yarıçap: <b>{{radius}} µm</b> · Alan: <b class="good">{{area}} mm²</b> · Stoma: <b>{{count}}</b> · Yoğunluk: <b class="good">{{density}} stoma/mm²</b>',
   circleOutOfBounds: 'Görüş alanının tamamı görüntü içinde olmalıdır.',
+  aiApiKeyMissing: 'Yapay zeka analizi için Ayarlar bölümüne Gemini API anahtarınızı ekleyin.',
+  aiApiKeyInvalid:
+    'Gemini API anahtarını kabul etmedi. Ayarlar bölümünden kontrol edin veya değiştirin.',
+  aiQuotaExceeded: 'Gemini API kotası veya istek sınırı aşıldı. Daha sonra tekrar deneyin.',
+  aiTimeout: 'Gemini isteği zaman aşımına uğradı. Bağlantınızı kontrol edip tekrar deneyin.',
+  aiNetwork: 'Gemini bağlantısı kurulamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.',
+  aiServiceError: 'Gemini hizmeti geçici olarak kullanılamıyor. Daha sonra tekrar deneyin.',
+  aiInvalidResponse: 'Gemini okunamayan bir sonuç döndürdü. Analizi tekrar deneyin.',
+  aiInvalidRequest: 'Görüntü veya istek Gemini analizi için geçerli değil.',
+  aiSecureStorageUnavailable:
+    'Bu cihazda güvenli anahtar depolama kullanılamıyor. API anahtarı kaydedilmedi.',
 };

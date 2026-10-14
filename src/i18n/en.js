@@ -30,4 +30,14 @@ export default {
   circleReadout:
     'Diameter: <b>{{diameter}} µm</b> · Radius: <b>{{radius}} µm</b> · Area: <b class="good">{{area}} mm²</b> · Stomata: <b>{{count}}</b> · Density: <b class="good">{{density}} stomata/mm²</b>',
   circleOutOfBounds: 'The entire field of view must fit inside the image.',
+  aiApiKeyMissing: 'Add your Gemini API key in Settings to use AI analysis.',
+  aiApiKeyInvalid: 'Gemini rejected this API key. Check or replace it in Settings.',
+  aiQuotaExceeded: 'The Gemini API quota or rate limit was reached. Try again later.',
+  aiTimeout: 'The Gemini request timed out. Check your connection and try again.',
+  aiNetwork: 'Could not reach Gemini. Check your internet connection and try again.',
+  aiServiceError: 'Gemini is temporarily unavailable. Try again later.',
+  aiInvalidResponse: 'Gemini returned an unreadable result. Try the analysis again.',
+  aiInvalidRequest: 'The image or request is not valid for Gemini analysis.',
+  aiSecureStorageUnavailable:
+    'Secure key storage is unavailable on this device. The API key was not saved.',
 };
