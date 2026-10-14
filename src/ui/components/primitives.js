@@ -14,6 +14,11 @@ const ICONS = new Set([
   'moon',
   'globe',
   'close',
+  'minus',
+  'undo',
+  'fit',
+  'trash',
+  'target',
 ]);
 
 import iconSprite from '../icons.svg?raw';

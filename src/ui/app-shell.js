@@ -24,6 +24,12 @@ import {
 } from '../services/ai/api-key-store.js';
 import { createAiProvider } from '../services/ai/provider.js';
 import { getAiErrorMessage } from '../services/ai/errors.js';
+import {
+  analysisScreen,
+  mountAnalysis,
+  revokeAiConsent,
+  unmountAnalysis,
+} from '../features/analyze/analyze-screen.js';
 
 const STORAGE_KEYS = {
   language: 'micrometricpro.language',
@@ -90,23 +96,6 @@ function onboardingMarkup(state, t) {
   return `<main class="onboarding"><div class="onboarding__top"><span class="brand-mark">${icon('microscope')}</span><span>MicrometricPro</span></div><div class="onboarding__body">${stepper({ current: state.onboardingStep, total: ONBOARDING_STEPS.length, labels: ONBOARDING_STEPS.map(t) })}<p class="eyebrow">${t(ONBOARDING_STEPS[state.onboardingStep])}</p><h1>${t(stepTitle[state.onboardingStep])}</h1><p class="onboarding__description">${t(stepDescription[state.onboardingStep])}</p>${content}</div><div class="onboarding__footer">${state.onboardingStep > 0 ? button(t('onboardingBack'), { variant: 'text', action: 'onboarding-back' }) : '<span></span>'}${button(t(state.onboardingStep === ONBOARDING_STEPS.length - 1 ? 'onboardingStart' : 'onboardingContinue'), { variant: 'primary', action: 'onboarding-next', iconName: state.onboardingStep === ONBOARDING_STEPS.length - 1 ? 'check' : 'arrow' })}</div></main>`;
 }
 
-function analysisScreen(t) {
-  const header = appBar({
-    eyebrow: t('eyebrowWorkspace'),
-    title: t('analyzeTitle'),
-    trailing: `<span class="status-dot" aria-label="${t('comingNext')}"></span>`,
-  });
-  const canvas = card(
-    `<div class="analysis-canvas" role="region" aria-label="${t('canvasLabel')}"><div class="canvas-reticle"><span></span></div><div class="canvas-center">${icon('microscope')}</div><p class="eyebrow">${t('canvasReady')}</p><p>${t('canvasDescription')}</p>${chip(t('uncalibratedBadge'), { tone: 'warning' })}<p class="canvas-caption">${t('imageSupport')}</p></div>`,
-    { className: 'analysis-card' },
-  );
-  const tools = card(
-    `<div class="section-heading"><div><p class="eyebrow">${t('eyebrowWorkspace')}</p><h2>${t('analysisTools')}</h2></div></div><div class="tool-grid"><div class="tool-tile">${icon('ruler')}<span>${t('toolLength')}</span></div><div class="tool-tile">${icon('calibration')}<span>${t('toolCircle')}</span></div><div class="tool-tile">${icon('plus')}<span>${t('toolCount')}</span></div><div class="tool-tile tool-tile--ai">${icon('sparkles')}<span>${t('toolAi')}</span></div></div><p class="muted-note">${t('comingNext')}</p>`,
-  );
-  const recent = `<div class="section-heading section-heading--compact"><h2>${t('recentRecords')}</h2><button class="text-link" type="button" data-route="records">${t('viewAll')}${icon('arrow')}</button></div>${emptyState({ iconName: 'records', title: t('recordsEmptyTitle'), description: t('recordsEmptyDescription') })}`;
-  return `${header}<div class="screen-content screen-content--analysis">${canvas}${tools}<section class="recent-section">${recent}</section></div>`;
-}
-
 function recordsScreen(t) {
   const header = appBar({ eyebrow: t('eyebrowLibrary'), title: t('recordsTitle') });
   return `${header}<div class="screen-content screen-content--empty"><p class="screen-intro">${t('recordsIntro')}</p>${card(emptyState({ iconName: 'records', title: t('recordsEmptyTitle'), description: t('recordsEmptyDescription') }), { className: 'empty-card' })}</div>`;
@@ -137,7 +126,7 @@ function settingsScreen(state, t) {
     )}<label class="field field--select"><span class="field__label">${t('languageLabel')}</span><select class="input" name="language" data-setting="language"><option value="en"${state.language === 'en' ? ' selected' : ''}>${t('languageEnglish')}</option><option value="tr"${state.language === 'tr' ? ' selected' : ''}>${t('languageTurkish')}</option><option value="de"${state.language === 'de' ? ' selected' : ''}>${t('languageGerman')}</option></select></label>`,
   );
   const ai = card(
-    `<div class="settings-section__heading">${icon('sparkles')}<h2>${t('aiSection')}</h2></div><p class="settings-copy">${t('aiOptionalNote')}</p><form data-form="api-key"><div class="key-field-row">${field({ id: 'gemini-api-key', label: t('apiKeyLabel'), type: 'password', placeholder: t('apiKeyPlaceholder'), autocomplete: 'off', hint: t('apiKeyHint') })}</div><div class="button-row">${button(t('saveKey'), { variant: 'primary', type: 'submit', iconName: 'shield' })}${button(t('testKey'), { variant: 'secondary', action: 'test-key', iconName: 'sparkles' })}</div></form><div class="key-status"><span class="key-status__indicator"></span><span data-key-status>${t('aiApiKeyMissing')}</span><button class="text-link text-link--danger" type="button" data-action="remove-key">${t('removeKey')}</button></div><label class="field"><span class="field__label">${t('modelLabel')}</span><input class="input" type="text" name="model" value="${escapeHtml(state.model)}" data-setting="model" autocapitalize="off" spellcheck="false"><span class="field__hint">${t('modelHint')}</span></label><label class="field"><span class="field__label">${t('promptLabel')}</span><textarea class="input textarea" name="prompt" rows="5" data-setting="prompt">${escapeHtml(state.prompt)}</textarea><span class="field__hint">${t('promptHint')}</span></label><button class="text-link" type="button" data-action="reset-prompt">${t('resetPrompt')}</button>`,
+    `<div class="settings-section__heading">${icon('sparkles')}<h2>${t('aiSection')}</h2></div><p class="settings-copy">${t('aiOptionalNote')}</p><form data-form="api-key"><div class="key-field-row">${field({ id: 'gemini-api-key', label: t('apiKeyLabel'), type: 'password', placeholder: t('apiKeyPlaceholder'), autocomplete: 'off', hint: t('apiKeyHint') })}</div><div class="button-row">${button(t('saveKey'), { variant: 'primary', type: 'submit', iconName: 'shield' })}${button(t('testKey'), { variant: 'secondary', action: 'test-key', iconName: 'sparkles' })}</div></form><div class="key-status"><span class="key-status__indicator"></span><span data-key-status>${t('aiApiKeyMissing')}</span><button class="text-link text-link--danger" type="button" data-action="remove-key">${t('removeKey')}</button></div><label class="field"><span class="field__label">${t('modelLabel')}</span><input class="input" type="text" name="model" value="${escapeHtml(state.model)}" data-setting="model" autocapitalize="off" spellcheck="false"><span class="field__hint">${t('modelHint')}</span></label><label class="field"><span class="field__label">${t('promptLabel')}</span><textarea class="input textarea" name="prompt" rows="5" data-setting="prompt">${escapeHtml(state.prompt)}</textarea><span class="field__hint">${t('promptHint')}</span></label><button class="text-link" type="button" data-action="reset-prompt">${t('resetPrompt')}</button><button class="text-link" type="button" data-action="revoke-consent">${t('revokeConsent')}</button>`,
   );
   const privacy = card(
     `<div class="settings-section__heading">${icon('shield')}<h2>${t('privacySection')}</h2></div><p class="settings-copy">${t('privacySummary')}</p><p class="settings-copy muted">${t('privacyDetails')}</p><button class="list-link" type="button" data-route="about"><span>${icon('globe')}${t('aboutLicenses')}</span>${icon('arrow')}</button><div class="data-management"><strong>${t('dataManagement')}</strong><p>${t('dataManagementNext')}</p></div>`,
@@ -185,7 +174,7 @@ export function startApp(root) {
     toastTimer: null,
   };
 
-  const t = (key) => translate(state.language, key);
+  const t = (key, vars) => translate(state.language, key, vars);
 
   function applyPreferences() {
     document.documentElement.dataset.theme = state.theme;
@@ -208,6 +197,16 @@ export function startApp(root) {
     const activeRoute = state.route === 'about' ? 'settings' : state.route;
     root.innerHTML = `${iconSpriteMarkup()}<div class="app-shell">${renderScreen(state, t)}${bottomNav(activeRoute, t)}</div><div class="toast-region" id="toast-region"></div>`;
     if (state.route === 'settings') refreshKeyStatus();
+    if (state.route === 'analyze') {
+      mountAnalysis(root, {
+        t,
+        showToast,
+        getLanguage: () => state.language,
+        getSettings: () => ({ model: state.model, prompt: state.prompt }),
+      });
+    } else {
+      unmountAnalysis();
+    }
   }
 
   function showToast(message, tone = 'info') {
@@ -315,6 +314,10 @@ export function startApp(root) {
         } catch (error) {
           showToast(getAiErrorMessage(error, t), 'error');
         }
+        break;
+      case 'revoke-consent':
+        revokeAiConsent();
+        showToast(t('toastConsentRevoked'), 'success');
         break;
       case 'reset-prompt': {
         state.prompt = STOMATA_SYSTEM_PROMPT;
