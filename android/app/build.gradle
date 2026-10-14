@@ -1,8 +1,24 @@
 apply plugin: 'com.android.application'
 
+def keystoreProps = new Properties()
+def keystoreFile = rootProject.file('keystore.properties')
+if (keystoreFile.exists()) {
+    keystoreFile.withInputStream { keystoreProps.load(it) }
+}
+
 android {
     namespace = "app.micrometricpro"
     compileSdk = rootProject.ext.compileSdkVersion
+    signingConfigs {
+        if (keystoreFile.exists()) {
+            release {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
+        }
+    }
     defaultConfig {
         applicationId "app.micrometricpro"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -18,6 +34,9 @@ android {
     }
     buildTypes {
         release {
+            if (keystoreFile.exists()) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

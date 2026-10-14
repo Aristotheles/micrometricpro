@@ -3,3 +3,6 @@ node_modules
 android
 package-lock.json
 docs/AGENT_KICKOFF_PROMPT.md
+
+test-results/
+playwright-report/

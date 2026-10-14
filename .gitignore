@@ -46,3 +46,7 @@ docs/AGENT_KICKOFF_PROMPT.md
 # OS
 .DS_Store
 Thumbs.db
+
+# Playwright
+test-results/
+playwright-report/
