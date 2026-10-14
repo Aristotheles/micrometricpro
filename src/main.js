@@ -1,2 +1,4 @@
-const root = document.getElementById('app');
-root.innerHTML = '<main class="boot"><h1>MicrometricPro</h1></main>';
+import './ui/tokens.css';
+import { startApp } from './ui/app-shell.js';
+
+startApp(document.querySelector('#app'));
