@@ -1,0 +1,31 @@
+export default {
+  appTitle: 'MicrometricPro',
+  langLabel: 'Dil',
+  lengthMode: 'Uzunluk',
+  circleMode: 'Daire / Stoma',
+  reset: 'Sıfırla',
+  setA: "A'yı işaretle",
+  setB: "B'yi işaretle",
+  setC: "C'yi işaretle",
+  zoomOut: '− Zoom',
+  zoomIn: '+ Zoom',
+  nudgeLeft: '← 1 px',
+  nudgeRight: '1 px →',
+  nudgeUp: '↑ 1 px',
+  nudgeDown: '1 px ↓',
+  stomaCountLabel: 'Stoma sayısı:',
+  selectPhotoPrompt: 'Fotoğraf seç. Görüntüyü sürükleyerek ölçüm başlangıcını merkeze getir.',
+  helpText:
+    "Uzunluk: A ve B'yi seç. Daire/Stoma: dairenin çevresi üzerinde birbirinden uzak üç nokta A-B-C seç; merkez, çap, alan ve stoma/mm² otomatik hesaplanır.",
+  calibrationsLabel: 'Kalibrasyonlar:',
+  photoNotSelected: 'Fotoğraf seç.',
+  imageDecodeFailed: 'Görüntü açılamadı.',
+  scaleReadout: '{{objective}}× seçili · ölçek: <b class="good">{{scale}} µm/pixel</b>',
+  lengthReadout: 'A–B: <b>{{px}} px</b> → <b class="good">{{um}} µm</b>',
+  circlePrompt: '{{objective}}× · Çevreden üç nokta seç: A, B ve C. Merkez otomatik bulunacak.',
+  collinearWarning:
+    '<span class="warn">Üç nokta aynı doğruya çok yakın. C noktasını çevrenin başka bir yerine seç.</span>',
+  circleReadout:
+    'Çap: <b>{{diameter}} µm</b> · Yarıçap: <b>{{radius}} µm</b> · Alan: <b class="good">{{area}} mm²</b> · Stoma: <b>{{count}}</b> · Yoğunluk: <b class="good">{{density}} stoma/mm²</b>',
+  circleOutOfBounds: 'Görüş alanının tamamı görüntü içinde olmalıdır.',
+};
