@@ -44,6 +44,12 @@
   <img src="screenshots/settings.jpg" alt="Settings and optional Gemini AI" width="23%" />
 </div>
 
+<div align="center">
+  <img src="screenshots/demo.gif" alt="MicrometricPro walkthrough" width="240" />
+  <br />
+  <b>⬇️ <a href="https://github.com/Aristotheles/micrometricpro/releases/latest">Download the APK / APK'yı indir</a></b>
+</div>
+
 ---
 
 # English
