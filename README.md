@@ -13,23 +13,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Privacy](https://img.shields.io/badge/Privacy-Offline--first-8DE8C8?style=for-the-badge)](PRIVACY.md)
 
-<a href="https://patreon.com/opensource2" target="_blank">
-  <img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Become a Patron" />
-</a>
-<a href="https://github.com/Aristotheles" target="_blank">
-  <img src="https://img.shields.io/badge/GitHub-Aristotheles-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-</a>
-<a href="https://x.com/VibeKodlama" target="_blank">
-  <img src="https://img.shields.io/badge/X-@VibeKodlama-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" />
-</a>
-<a href="https://www.youtube.com/@BreathofRumi" target="_blank">
-  <img src="https://img.shields.io/badge/YouTube-Breath%20of%20Rumi-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" />
-</a>
-<a href="https://instagram.com/germanchunksofficial" target="_blank">
-  <img src="https://img.shields.io/badge/Instagram-germanchunksofficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
-</a>
-
-🪙 **Bitcoin (BTC, BlueWallet):** `bc1q7kpfdc9stpnexvwgpzxl8nzaua8wfyp2ht8xxa`
+Aksu 15 Temmuz Şehitler Anadolu Lisesi öğrencileri tarafından geliştirilmiştir · Developed by students of Aksu 15 Temmuz Şehitler Anadolu Lisesi
 
 [English](#english) · [Türkçe](#türkçe)
 
@@ -127,17 +111,9 @@ Capacitor 8 · Vanilla JavaScript (ES modules) · Vite · Android Keystore secur
 - AI detections are suggestions; review them before trusting a count.
 - Research/educational tool — not a certified measurement instrument.
 
-## Support the project
+## Developers
 
-This app is free, open-source and ad-free. If it saved you time, consider fueling further development — your support also helps fund my daughter's international higher education in engineering and architecture.
-
-<p>
-  <a href="https://patreon.com/opensource2" target="_blank">
-    <img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Become a Patron" />
-  </a>
-</p>
-
-🪙 **Bitcoin (BTC, BlueWallet):** `bc1q7kpfdc9stpnexvwgpzxl8nzaua8wfyp2ht8xxa`
+MicrometricPro was coded and published by students of Aksu 15 Temmuz Şehitler Anadolu Lisesi (Giresun, Türkiye), using AI-assisted development with GitHub Copilot. The deterministic measurement core (`src/core/`) was carried over, together with its tests, from an earlier version written by the project advisor.
 
 ---
 
@@ -216,34 +192,14 @@ Capacitor 8 · Vanilla JavaScript (ES modülleri) · Vite · Android Keystore g�
 - AI tespitleri öneridir; bir sayıya güvenmeden önce gözden geçirin.
 - Araştırma/eğitim aracıdır; sertifikalı bir ölçüm cihazı değildir.
 
-## Projeye destek olun
+## Geliştirenler
 
-Bu uygulama ücretsiz, açık kaynak ve reklamsızdır. Zamanınızı kısalttıysa geliştirmeye devam etmem için destek olabilirsiniz — desteğiniz kızımın mühendislik & mimarlık alanındaki uluslararası yükseköğrenimini finanse etmeme de yardımcı oluyor.
-
-<p>
-  <a href="https://patreon.com/opensource2" target="_blank">
-    <img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon destekçisi olun" />
-  </a>
-</p>
-
-🪙 **Bitcoin (BTC, BlueWallet):** `bc1q7kpfdc9stpnexvwgpzxl8nzaua8wfyp2ht8xxa`
+MicrometricPro, Aksu 15 Temmuz Şehitler Anadolu Lisesi (Giresun) öğrencileri tarafından GitHub Copilot ile yapay zekâ destekli olarak kodlanmış ve yayımlanmıştır. Deterministik ölçüm çekirdeği (`src/core/`), testleriyle birlikte, proje danışmanının yazdığı önceki sürümden alınmıştır.
 
 ---
 
 <div align="center">
 
-### 🌐 Connect / Bağlantılar
-
-[![Patreon](https://img.shields.io/badge/Patreon-opensource2-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/opensource2)
-[![GitHub](https://img.shields.io/badge/GitHub-Aristotheles-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Aristotheles)
-[![X](https://img.shields.io/badge/X-@VibeKodlama-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/VibeKodlama)
-[![YouTube](https://img.shields.io/badge/YouTube-Breath%20of%20Rumi-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@BreathofRumi)
-[![YouTube](https://img.shields.io/badge/YouTube-Kalpten%20Nağme-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@KalptenNa%C4%9Fme)
-[![Instagram](https://img.shields.io/badge/Instagram-germanchunksofficial-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/germanchunksofficial)
-[![Instagram](https://img.shields.io/badge/Instagram-kalptennagme-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/kalptennagme)
-
-🪙 **BTC (BlueWallet):** `bc1q7kpfdc9stpnexvwgpzxl8nzaua8wfyp2ht8xxa`
-
-MIT © MicrometricPro contributors
+MIT © 2026 Aksu 15 Temmuz Şehitler Anadolu Lisesi öğrencileri
 
 </div>

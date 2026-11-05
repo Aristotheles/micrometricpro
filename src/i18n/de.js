@@ -240,6 +240,8 @@ export default {
   onboardingStart: 'Messung starten',
   aboutTitle: 'Info & Datenschutz',
   aboutIntro: 'Ein privater, offline-orientierter Arbeitsplatz für Mikroskopmessungen.',
+  aboutCredits:
+    'Entwickelt von Schülerinnen und Schülern des Aksu 15 Temmuz Şehitler Anadolu Lisesi (Giresun, Türkei).',
   privacyHeading: 'Datenschutz',
   licensesHeading: 'Open-Source-Lizenzen',
   aboutLicenseText:

@@ -229,6 +229,8 @@ export default {
   onboardingStart: 'Ölçüme başla',
   aboutTitle: 'Hakkında ve gizlilik',
   aboutIntro: 'Özel ve çevrimdışı öncelikli mikroskop ölçüm alanı.',
+  aboutCredits:
+    'Aksu 15 Temmuz Şehitler Anadolu Lisesi (Giresun) öğrencileri tarafından geliştirilmiştir.',
   privacyHeading: 'Gizlilik',
   licensesHeading: 'Açık kaynak lisansları',
   aboutLicenseText:

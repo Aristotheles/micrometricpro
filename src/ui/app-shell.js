@@ -131,7 +131,7 @@ function aboutScreen(t) {
     title: t('aboutTitle'),
     trailing: safeReturnButton(t('close')),
   });
-  return `${header}<div class="screen-content">${card(`<div class="about-brand">${icon('microscope')}<strong>MicrometricPro</strong></div><p class="screen-intro">${t('aboutIntro')}</p><h2>${t('privacyHeading')}</h2><p class="settings-copy">${t('privacySummary')}</p><p class="settings-copy muted">${t('privacyDetails')}</p><h2>${t('licensesHeading')}</h2><p class="settings-copy">${t('aboutLicenseText')}</p>`, { className: 'about-card' })}</div>`;
+  return `${header}<div class="screen-content">${card(`<div class="about-brand">${icon('microscope')}<strong>MicrometricPro</strong></div><p class="screen-intro">${t('aboutIntro')}</p><p class="settings-copy">${t('aboutCredits')}</p><h2>${t('privacyHeading')}</h2><p class="settings-copy">${t('privacySummary')}</p><p class="settings-copy muted">${t('privacyDetails')}</p><h2>${t('licensesHeading')}</h2><p class="settings-copy">${t('aboutLicenseText')}</p>`, { className: 'about-card' })}</div>`;
 }
 
 function renderScreen(state, t) {
