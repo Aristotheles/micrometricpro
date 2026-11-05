@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Calibrated microscope measurement and stomata counting for Android.",
+  "author": "Aksu 15 Temmuz Şehitler Anadolu Lisesi öğrencileri",
   "license": "MIT",
   "type": "module",
   "engines": {

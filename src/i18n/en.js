@@ -230,6 +230,8 @@ export default {
   onboardingStart: 'Start measuring',
   aboutTitle: 'About & privacy',
   aboutIntro: 'A private, offline-first microscope measurement workspace.',
+  aboutCredits:
+    'Developed by students of Aksu 15 Temmuz Şehitler Anadolu Lisesi (Giresun, Türkiye).',
   privacyHeading: 'Privacy',
   licensesHeading: 'Open-source licenses',
   aboutLicenseText:
